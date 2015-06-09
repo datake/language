@@ -1,0 +1,12 @@
+<?php
+
+class PostsController extends AppController{
+     // public $scaffold;
+      public $helpers = array('Html', 'Form');
+      
+      //記事一覧をひっぱってきて変数にセット
+      public function index() {
+      //全ての記事をviewに渡す
+      $this->set('posts', $this->Post->find('all'));
+}
+}

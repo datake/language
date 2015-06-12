@@ -6,16 +6,47 @@ class DictionariesController extends AppController{
 
       //記事一覧をひっぱってきて変数にセット
       public function index() {
-      	 $params = array(
-//			'order' => 'modified desc',
-			'limit' => 10
-		);
+      	 $params = array('limit' => 10);
+
       //全ての辞書データ
       $this->set('dictionaries', $this->Dictionary->find('all'));
-
+      $this->set('limit10s',$params);
+      //$this->set('grounds',$grounds);
 
 	}
+  //英語がgroundであるものの日本語、ドイツ語(10こある？)
 
+  public function ensearch($id=null) {
+    //渡されたidでModelから記事をひっぱってくるためにセット
+      //$this->Dictionary->$english = $english;
+      //$english="ground"
+      //$results = $this->Dictionary->find('all');/*, array(
+        //'conditions' => array('Dictionary.english' => $english)
+    //));
+      //GETでアクセスされた場合に編集用のフォームを開く
+      if ($this->request->is('get')) {
+        //フォームの中に引っ張ってきたモデルの中身をいれる
+        $this->Session->setFlash($id);
+          $this->request->data = $this->Dictionary->read();
+      } else {
+        //ユーザがデータを編集してそのフォームがPOSTされた時の処理、まずデータの保存をする。
+
+          if ($this->Dictionary->save($this->request->data)) {
+              $this->Session->setFlash('success!');
+          } else {
+              $this->Session->setFlash('failed!');
+          }
+      }
+
+      /*if ($this->request->is('post')) {
+            $this->Session->setFlash('Goods Search!');
+        }*/
+
+        //$this->set('results',$results);
+        //$this->set('results', $this->Dictionary->find('all'));
+
+        $this->set('dictionaries', $this->Dictionary->find('all'));
+  }
 
 	public function view($id=null){
 		//$this->Post->id=$id;

@@ -111,4 +111,4 @@ CakeLog::config('db', array(
   'file' => 'db',
 ));
 //plugin全て読み込み
-//CakePlugin::load('Bower');
+CakePlugin::load(array('Migrations', 'Search', 'DebugKit'));

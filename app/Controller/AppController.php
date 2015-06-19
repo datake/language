@@ -41,9 +41,9 @@ class AppController extends Controller {
             // ログアウト後に /Pages/home へジャンプ
             'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home'))
         );
- 
+
     public function beforeFilter() {
-        
+
         //indexとviewアクションでログインを必要としないようにする＝サイトに登録していない人がみれる
         $this->Auth->allow('index', 'view');
         // 認証コンポーネントをViewで利用可能にしておく
@@ -51,11 +51,45 @@ class AppController extends Controller {
     }
     //$this->set("referer",$this->referer());
 
+		/*public function getalphabet($kanjiquery){
+
+		 if ($this->request->is('post')) {
+		     $this->Session->setFlash('ルビふりsuccess');
+
+		 }
+
+		 if (empty($this->request->data)) {
+		 $query = 'Yahoo';//検索したいキーワードを指定
+
+		 } else {
+		     $query=$this->request->data['Search']['query'];
+
+
+		 }
+		$api = 'http://jlp.yahooapis.jp/FuriganaService/V1/furigana';
+		$appid = 'dj0zaiZpPWxQaFBRSzBnM1JlTSZzPWNvbnN1bWVyc2VjcmV0Jng9ZjU-';
+		$params = array(
+		    'sentence' => $kanjiquery
+		);
+
+		$ch = curl_init($api);
+		curl_setopt_array($ch, array(
+		    CURLOPT_POST           => true,
+		    CURLOPT_RETURNTRANSFER => true,
+		    CURLOPT_USERAGENT      => "Yahoo AppID: $appid",
+		    CURLOPT_POSTFIELDS     => http_build_query($params),
+		));
+
+		$result = curl_exec($ch);
+		curl_close($ch);
+		//$this->set('result',$result);
+		return $result;
+	}*/
 /*
 	//Authコンポーネント(http://d.hatena.ne.jp/pospome/20130810/1376132512)
 	public $helpers = array('Html', 'Form', 'Session');
 	public $components = array(
-		'Session', 
+		'Session',
 		'Auth' => array(
 			'loginAction' => array('controller' => 'users','action' => 'login'), //ログインを行なうaction
                        'loginRedirect' => array('controller' => 'users', 'action' => 'index'), //ログイン後のページ

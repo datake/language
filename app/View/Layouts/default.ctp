@@ -61,9 +61,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			</style>
 			<h1><?php echo $this->Html->link('Home', '/'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<?php if ($auth->user('username')){
-					echo h($auth->user('username'));?>
-					さんでloginしています。&nbsp;&nbsp;&nbsp;
-					　<a href="/cakephp-blog/Users/logout">logoutはこちら</a></h1>
+					//echo h($auth->user('username'));?>
+					<!--さんでloginしています。&nbsp;&nbsp;&nbsp;
+					　<a href="/cakephp-blog/Users/logout">logoutはこちら</a></h1>-->
 
 					<?php
 				} elseif (!($auth->user('username'))) {?>

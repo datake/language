@@ -17,3 +17,5 @@
  */
 
 require 'webroot' . DIRECTORY_SEPARATOR . 'index.php';
+//memory_limitうまくいかない
+//ini_set('memory_limit','1G');

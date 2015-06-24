@@ -48,7 +48,7 @@ class ZsmsController extends AppController {
     $joins=$this->Zsm->find('all',
     array(
             "fields" => "*", //*入れないと全部表示されない
-            "limit" =>20,
+            "limit" =>2000,
             "joins" => array(
                              array("type" => 'LEFT',
                                    "table" => 'mnks',
@@ -58,7 +58,7 @@ class ZsmsController extends AppController {
                        ),
           ));
 
-$this->set('joins', $joins);
+    $this->set('joins', $joins);
 
 
 	}

@@ -1,6 +1,7 @@
-<div class="zsms index">
-	<h2><?php echo __('Zsms'); ?></h2>
+<div class="inds index">
+	<h2><?php echo __('Inds'); ?></h2>
 <?php //debug($joins);?>
+<?php //debug($searched) ?>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 
@@ -10,15 +11,15 @@
 
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($joins as $zsm): ?>
+	<?php foreach ($searched as $ind): ?>
 	<tr>
-		<td><?php echo h($zsm['Zsm']['zsm']); ?>&nbsp;</td>
-		<td><?php echo h($zsm['Zsm']['ind']); ?>&nbsp;</td>
-		<td><?php echo h($zsm['mnks']['mnk']); ?>&nbsp;</td>
+		<td><?php echo h($ind['zsms']['zsm']); ?>&nbsp;</td>
+		<td><?php echo h($ind['Ind']['ind']); ?>&nbsp;</td>
+		<td><?php echo h($ind['mnks']['mnk']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $zsm['Zsm']['id'])); ?>
-			<?php //echo $this->Html->link(__('Edit'), array('action' => 'edit', $zsm['Zsm']['id'])); ?>
-			<?php //echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $zsm['Zsm']['id']), null, __('Are you sure you want to delete # %s?', $zsm['Zsm']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $ind['Ind']['id'])); ?>
+			<?php //echo $this->Html->link(__('Edit'), array('action' => 'edit', $zsm['Ind']['id'])); ?>
+			<?php //echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $zsm['Ind']['id']), null, __('Are you sure you want to delete # %s?', $zsm['Ind']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -36,7 +37,7 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
-	<!--
+
 	<script type="text/javascript" src="http://localhost/gviz/gviz.js"></script>
 
 	<script type="gviz" data-layout="dot"><![CDATA[
@@ -49,54 +50,54 @@
 
 <img src='http://g.gravizo.com/g?
 digraph G {
-
 <?php
-foreach ($zsms as $zsm):
-	echo(getalphabet($zsm['Zsm']['ind']));
+foreach ($searched as $ind):
+	echo($ind['zsms']['zsm']);
 	echo ("->");
-	echo ($zsm['Zsm']['zsm']);
+	echo ($ind['Ind']['ind']);
 	echo(";");
 endforeach;
-?>-->
+?>
 <?php
-/*foreach ($zsms as $zsm):
-	echo($zsm['Zsm']['english']);
+foreach ($searched as $ind):
+	echo($ind['Ind']['ind']);
 	echo ("->");
-	echo ($zsm['Zsm']['german']);
+	echo ($ind['mnks']['mnk']);
 	echo(";");
-endforeach;*/
+endforeach;
 ?>
 }
 '/>
-<!--日本語がもじばけする-->
-<!--	<img src='http://g.gravizo.com/g?
-   digraph G {
-      日本語-> 英語;
-     英語 -> 独語;
-   }
-  '/>-->
+
 	<?php //debug($joins) ?>
+
 </div>
 <div class="actions">
   <div class="well" style="margin-top:20px;">
-      <?php echo $this->Form->create('Zsm', array('action'=>'index')); ?>
+
       <fieldset>
           <legend>検索</legend>
       </fieldset>
 
-      <!--searchプラグインの検索-->
+        <!--サーチプラグイン使わない検索-->
+				<?php // echo $this->Form->create('Ind', array('action'=>'index')); ?>
 	  <?php //echo $this->Form->input('zsm', array('label' => 'malay', 'empty' => true)); ?>
       <?php //echo $this->Form->input('ind', array('label' => 'indonesia', 'empty' => true)); ?>
       <?php //echo $this->Form->input('mnk', array('label' => 'Minangkabau', 'empty' => true)); ?>
-      <?php //echo $this->Form->end('検索'); ?>
+			<?php
+			echo $this->Form->create('Ind',array('action'=>'index'));
+ 			?>インドネシア:<?php echo $this->Form->text('Ind.ind');
+			?>ミナケバブ:<?php echo $this->Form->text('mnks.mnk');
+			?>マレー: <?php echo $this->Form->text('zsms.zsm');
+      echo $this->Form->end('検索'); ?>
 
-      <!--サーチプラグイン使わない検索-->
+
   </div>
-	<!--<h3><?php echo __('Actions'); ?></h3>
+	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Zsm'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New Ind'), array('action' => 'add', 'url'=>'index')); ?></li>
 	</ul>
--->
+
 </div>
 
 <?php
